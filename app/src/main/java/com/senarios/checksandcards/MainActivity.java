@@ -1,6 +1,7 @@
 package com.senarios.checksandcards;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -8,13 +9,21 @@ import android.graphics.BitmapFactory;
 import android.graphics.ImageFormat;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.senarios.checksandcards.Dialogs.ImageDialog;
+import com.senarios.checksandcards.Imaging.Tools;
+import com.senarios.checksandcards.TessTool.ResultClass;
+import com.senarios.checksandcards.TessTool.TessAsyncEngine;
+import com.senarios.checksandcards.TessTool.TessEngine;
 
 import java.io.ByteArrayOutputStream;
 
@@ -247,9 +256,118 @@ public class MainActivity
 
             mOverlayView.setVisibility(View.VISIBLE);
             mOverlayView.invalidate();
-            Toast.makeText(mContext, "image Count" + count++, Toast.LENGTH_SHORT)
-                 .show();
+            if(bmp != null && !mIsWorking){
+                RecognizeMICRLiveCaptureTask result = new RecognizeMICRLiveCaptureTask();
+                result.execute(MainActivity.this, bmp);
+            }
+//            Toast.makeText(mContext, "image Count" + count++, Toast.LENGTH_SHORT)
+//                 .show();
         }
     };
-    private int count = 0;
+    private class RecognizeMICRLiveCaptureTask extends AsyncTask<Object,Void, ResultClass> {
+
+        final String TAG = "DBG_" + TessAsyncEngine.class.getName();
+
+        private Bitmap bmp;
+
+        private AppCompatActivity context;
+
+        @Override
+        protected void onPreExecute () {
+            mIsWorking = true;
+        }
+        @Override
+        protected ResultClass doInBackground(Object... params) {
+
+            try {
+
+                if(params.length < 2) {
+                    Log.e(TAG, "Error passing parameter to execute - missing params");
+                    return null;
+                }
+
+                if(!(params[0] instanceof Activity) || !(params[1] instanceof Bitmap)) {
+                    Log.e(TAG, "Error passing parameter to execute(context, bitmap)");
+                    return null;
+                }
+
+                context = (AppCompatActivity)params[0];
+
+                bmp = (Bitmap)params[1];
+
+                if(context == null || bmp == null) {
+                    Log.e(TAG, "Error passed null parameter to execute(context, bitmap)");
+                    return null;
+                }
+
+                int rotate = 0;
+
+                if(params.length == 3 && params[2]!= null && params[2] instanceof Integer){
+                    rotate = (Integer) params[2];
+                }
+
+                if(rotate >= -180 && rotate <= 180 && rotate != 0)
+                {
+                    bmp = Tools.preRotateBitmap(bmp, rotate);
+                    Log.d(TAG, "Rotated OCR bitmap " + rotate + " degrees");
+                }
+
+                TessEngine tessEngine =  TessEngine.Generate(context);
+
+                bmp = bmp.copy(Bitmap.Config.ARGB_8888, true);
+
+                ResultClass result = tessEngine.detectText(bmp);
+                result.rzlt = result.rzlt.replace(" ", "");
+                result.rzlt = result.rzlt.replace("\n","");
+                //Log.d(TAG, result);
+                return result;
+
+            } catch (Exception ex) {
+                Log.d(TAG, "Error: " + ex + "\n" + ex.getMessage());
+            }
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(ResultClass result) {
+            if(result.rzlt.length()>32){
+
+                String fresult = result.rzlt;
+                if (fresult.contains("A") && fresult.contains("C") && fresult.startsWith("C")) {
+                    String[] cSubstrings = fresult.split("C");
+                    String[] aSubstrings = fresult.split("A");
+                    if(cSubstrings.length==4 && aSubstrings.length==2) {
+                        String[] subString1 = cSubstrings[2].split("A");
+                        if(subString1.length==2) {
+                            if(isNumeric(subString1[0]) && isNumeric(subString1[1])&&isNumeric(cSubstrings[1])) {
+                                ImageDialog.New().addTitle(subString1[0], subString1[1], cSubstrings[1])
+                                        .addBitmap(bmp)
+                                        .show(context.getSupportFragmentManager(), TAG);
+                                stopLiveCapture();
+                            }
+                        }
+                    }
+                }
+            }
+            mIsWorking = false;
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            mIsWorking = false;
+        }
+    }
+    public static boolean isNumeric(String str)
+    {
+        try
+        {
+            Long d = Long.parseLong(str);
+        }
+        catch(NumberFormatException nfe)
+        {
+            return false;
+        }
+        return true;
+    }
 }

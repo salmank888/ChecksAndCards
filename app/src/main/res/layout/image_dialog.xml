@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="11"
+    android:layout_margin="30dp"
+
+    >
+
+    <TextView
+        android:textColor="#ff9b58ff"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Routing Number"
+        android:maxLines="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:padding="1dp"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="12345678"
+        android:maxLines="1"
+        android:id="@+id/routing"
+        android:textColor="#ff9b58ff"
+        android:inputType="number"/>
+    <TextView
+        android:textColor="#ff9b58ff"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_vertical|center_horizontal"
+        android:maxLines="1"
+        android:text="Account Number"/>
+    <TextView
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:padding="1dp"
+        android:text="123456788"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/account"
+        android:textSize="15sp"
+        android:maxLines="1"
+        android:textColor="#ff9b58ff"/>
+    <TextView
+        android:textColor="#ff9b58ff"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:id="@+id/image_dialog_textView"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Cheque Number"
+        android:maxLines="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5"
+        android:layout_gravity="center_horizontal|top"
+        android:gravity="center_vertical|center_horizontal"
+        android:id="@+id/cheque"
+        android:text="12345677"
+        android:padding="1dp"
+        android:textSize="15sp"
+        android:maxLines="1"
+        android:inputType="number"
+        android:textColor="#ff9b58ff"/>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:id="@+id/image_dialog_imageView"
+        android:layout_gravity="center"
+         />
+    <Button
+        android:id="@+id/retry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Done"
+        android:layout_gravity="center"/>
+
+
+
+</LinearLayout>
