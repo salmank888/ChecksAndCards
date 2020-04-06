@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res"/><source path="D:\Senarios\MyApplication\LeadtoolsCamera\build\generated\res\rs\debug"/><source path="D:\Senarios\MyApplication\LeadtoolsCamera\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res"><file name="ic_bubble_level" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable\ic_bubble_level.xml" qualifiers="" type="drawable"/><file name="ic_camera" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable\ic_camera.xml" qualifiers="" type="drawable"/><file name="ic_flash_auto" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable\ic_flash_auto.xml" qualifiers="" type="drawable"/><file name="ic_flash_off" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable\ic_flash_off.xml" qualifiers="" type="drawable"/><file name="ic_flash_on" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable\ic_flash_on.xml" qualifiers="" type="drawable"/><file name="ic_switch_camera" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable\ic_switch_camera.xml" qualifiers="" type="drawable"/><file name="ic_check" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-hdpi\ic_check.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_close" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-hdpi\ic_close.png" qualifiers="hdpi-v4" type="drawable"/><file name="ic_check" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-mdpi\ic_check.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_close" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-mdpi\ic_close.png" qualifiers="mdpi-v4" type="drawable"/><file name="ic_check" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-xhdpi\ic_check.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_close" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-xhdpi\ic_close.png" qualifiers="xhdpi-v4" type="drawable"/><file name="ic_check" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-xxhdpi\ic_check.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="ic_close" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-xxhdpi\ic_close.png" qualifiers="xxhdpi-v4" type="drawable"/><file name="ic_check" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-xxxhdpi\ic_check.png" qualifiers="xxxhdpi-v4" type="drawable"/><file name="ic_close" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\drawable-xxxhdpi\ic_close.png" qualifiers="xxxhdpi-v4" type="drawable"/><file name="activity_camera" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout\activity_camera.xml" qualifiers="" type="layout"/><file name="bubble_level_view" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout\bubble_level_view.xml" qualifiers="" type="layout"/><file name="include_camera" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout\include_camera.xml" qualifiers="" type="layout"/><file name="include_control" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout\include_control.xml" qualifiers="" type="layout"/><file name="include_control_transparent" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout\include_control_transparent.xml" qualifiers="" type="layout"/><file name="surface_view" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout\surface_view.xml" qualifiers="" type="layout"/><file name="activity_camera" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout-land\activity_camera.xml" qualifiers="land" type="layout"/><file name="texture_view" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\layout-v14\texture_view.xml" qualifiers="v14" type="layout"/><file name="menu_camera" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\menu\menu_camera.xml" qualifiers="" type="menu"/><file name="menu_camera_no_sensor" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\menu\menu_camera_no_sensor.xml" qualifiers="" type="menu"/><file name="mylicence" path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\raw\mylicence.lic" qualifiers="" type="raw"/><file path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="CameraView">
+        
+        <attr name="android:adjustViewBounds"/>
+        
+        <attr format="enum" name="facing">
+            
+            <enum name="back" value="0"/>
+            
+            <enum name="front" value="1"/>
+        </attr>
+        
+        <attr format="string" name="aspectRatio"/>
+        
+        <attr format="boolean" name="autoFocus"/>
+        
+        <attr format="enum" name="flash">
+            
+            <enum name="off" value="0"/>
+            
+            <enum name="on" value="1"/>
+            
+            <enum name="torch" value="2"/>
+            
+            <enum name="auto" value="3"/>
+            
+            <enum name="redEye" value="4"/>
+        </attr>
+        <attr format="float" name="maxPreviewSizeMP"/>
+
+        <attr format="integer" name="maxPreviewImages"/>
+
+        
+        <attr format="boolean" name="forceLegacyCamera"/>
+
+        
+        <attr format="enum" name="captureMode">
+            
+            <enum name="continuous" value="0"/>
+            
+            <enum name="single" value="1"/>
+        </attr>
+
+    </declare-styleable></file><file path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\values\public.xml" qualifiers=""><public name="facing" type="attr"/><public name="aspectRatio" type="attr"/><public name="autoFocus" type="attr"/><public name="flash" type="attr"/><public name="maxPreviewSizeMP" type="attr"/><public name="maxPreviewImages" type="attr"/><public name="forceLegacyCamera" type="attr"/><public name="captureMode" type="attr"/><public name="Widget.CameraView" type="style"/></file><file path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\values\strings.xml" qualifiers=""><string name="camera_permission_confirmation">This app uses CameraView. In order to do that, it needs permission to access camera.</string><string name="camera_permission_not_granted">Camera app cannot do anything without camera permission.</string><string name="picture_taken">Picture taken</string><string name="switch_flash">Switch flash</string><string name="switch_camera">Switch camera</string><string name="toggle_level">Toggle level</string><string name="flash_auto">Flash auto</string><string name="flash_off">Flash off</string><string name="flash_on">Flash on</string></file><file path="D:\Senarios\MyApplication\LeadtoolsCamera\src\main\res\values\styles.xml" qualifiers=""><style name="Widget.CameraView" parent="android:Widget">
+        <item name="android:adjustViewBounds">false</item>
+        <item name="facing">back</item>
+        <item name="aspectRatio">4:3</item>
+        <item name="autoFocus">true</item>
+        <item name="flash">auto</item>
+        <item name="maxPreviewSizeMP">2.1</item>
+        <item name="maxPreviewImages">4</item>
+        <item name="forceLegacyCamera">false</item>
+        <item name="captureMode">continuous</item>
+    </style></file></source><source path="D:\Senarios\MyApplication\LeadtoolsCamera\build\generated\res\rs\debug"/><source path="D:\Senarios\MyApplication\LeadtoolsCamera\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\Senarios\MyApplication\LeadtoolsCamera\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="D:\Senarios\MyApplication\LeadtoolsCamera\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="CameraView">
+        
+        <attr name="android:adjustViewBounds"/>
+        
+        <attr format="enum" name="facing">
+            
+            <enum name="back" value="0"/>
+            
+            <enum name="front" value="1"/>
+        </attr>
+        
+        <attr format="string" name="aspectRatio"/>
+        
+        <attr format="boolean" name="autoFocus"/>
+        
+        <attr format="enum" name="flash">
+            
+            <enum name="off" value="0"/>
+            
+            <enum name="on" value="1"/>
+            
+            <enum name="torch" value="2"/>
+            
+            <enum name="auto" value="3"/>
+            
+            <enum name="redEye" value="4"/>
+        </attr>
+        <attr format="float" name="maxPreviewSizeMP"/>
+
+        <attr format="integer" name="maxPreviewImages"/>
+
+        
+        <attr format="boolean" name="forceLegacyCamera"/>
+
+        
+        <attr format="enum" name="captureMode">
+            
+            <enum name="continuous" value="0"/>
+            
+            <enum name="single" value="1"/>
+        </attr>
+
+    </declare-styleable></configuration></mergedItems></merger>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue1">#ff50a0f0</color>
+    <color name="blue2">#ff306090</color>
+    <color name="gray1">#ffb0b0b0</color>
+    <color name="gray2">#ffe0e0e0</color>
+
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="blue">#ff50a0f0</color>
+    <color name="gray">#FFE0E0E0</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="colorPrimary">#FF306090</color>
+    <color name="colorPrimaryDark">#FF204060</color>
+    <color name="colorAccent">#FF50A0F0</color>
+
+    <color name="colorPrimaryModern">#144D9B</color>
+    <color name="colorPrimaryDarkModern">#0D3972</color>
+    <color name="colorAccentModern">#35C3E3</color>
+
+    <color name="colorPrimaryHaze">#393A6C</color>
+    <color name="colorPrimaryDarkHaze">#232442</color>
+    <color name="colorAccentHaze">#8DA3FF</color>
+    <color name="colorAccentLightHaze">#BBD0FF</color>
+    <color name="colorFadeHaze">#6368A5</color>
+    <color name="colorDialogBackgroundHaze">#2D2F45</color>
+    <color name="colorDividerHaze">#31344B</color>
+
+</resources>

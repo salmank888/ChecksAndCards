@@ -1,0 +1,33 @@
+apply from: project(':demos').projectDir.path + '/common.gradle'
+
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion project.ext.demosCompileSdkVersion
+    buildToolsVersion project.ext.demosBuildToolsVersion
+
+    defaultConfig {
+        minSdkVersion project.ext.demosMinSdkVersion
+        targetSdkVersion project.ext.demosTargetSdkVersion
+    }
+
+    packagingOptions {
+        exclude('META-INF/LE-FB14A.RSA')
+        exclude('META-INF/LE-FB14A.SF')
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/public'
+        main.java.srcDirs += 'src/main/base'
+        main.java.srcDirs += 'src/main/api9'
+        main.java.srcDirs += 'src/main/api14'
+        main.java.srcDirs += 'src/main/api21'
+    }
+
+}
+
+dependencies {
+    api "com.android.support:support-annotations:28.0.0"
+    api "com.android.support:support-v4:28.0.0"
+    api "com.android.support:design:28.0.0"
+}

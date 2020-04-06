@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">checksCards</string>
+    <string name="image_live_capture">live capture</string>
+    <string name="image_gallery">gallery</string>
+    <string name="image_file">browse image</string>
+    <string name="image_take_picture">take picture</string>
+
+    <string name="settings">Settings</string>
+    <string name="ocr_recognize_micr">read micr</string>
+    <string name="ocr_recognize_zone">select area</string>
+
+    <string name="micr_result">MICR Results</string>
+    <string name="micr_result_micrlinetext">MICR Line Text</string>
+    <string name="micr_result_auxiliary_on_us">Auxiliary on-Us</string>
+    <string name="micr_result_epc">EPC</string>
+    <string name="micr_result_routing">Routing</string>
+    <string name="micr_result_account">Account</string>
+    <string name="micr_result_check_number">Check number</string>
+    <string name="micr_result_amount">Amount</string>
+
+    <string name="settings_micr_extraction_mode">MICR Extraction Modes</string>
+    <string name="settings_video_micr_extraction_mode">Live Capture:</string>
+    <string name="settings_picture_micr_extraction_mode">Still Images:</string>
+    <string name="settings_strict_mode">Strict Mode</string>
+    <string name="settings_relaxed_mode">Relaxed Mode</string>
+    <string name="settings_strict_mode_note">Show results when both Routing and Account numbers from the MICR string are recognized.</string>
+    <string name="settings_relaxed_mode_note">Show results when MICR line is detected.</string>
+
+    <string name="micr_note_line1">Make sure the MICR code fits within the MICR Area guides.</string>
+    <string name="micr_note_line2">Also ensure there is plenty of light on the check.</string>
+    <string name="micr_note_area">MICR Area</string>
+
+    <string name="micr_na">N/A</string>
+
+    <string name="err_recognizing_micr">Error recognizing MICR zone</string>
+    <string name="err_no_micr">No MICR code detected, or cheque doesn\'t match the standards</string>
+    <string name="err_no_image_loaded">No image loaded</string>
+
+    <string name="read_options_on">ON</string>
+    <string name="read_options_off">OFF</string>
+
+    <string-array name="settings_micr_extraction_values">
+        <item>Strict Mode</item>
+        <item>Relaxed Mode</item>
+    </string-array></resources>

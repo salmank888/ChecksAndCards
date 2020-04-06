@@ -1,0 +1,48 @@
+if(project.hasProperty('buildAsArtifact') && project.findProperty('buildAsArtifact')) {
+    apply from: 'artifactBuild.gradle'
+}
+else {
+    if(project.hasProperty('useMaven') && project.findProperty('useMaven')) {
+        apply from: 'mavenBuild.gradle'
+    }
+    else {
+        allprojects {
+            repositories {
+                google()
+            }
+        }
+
+
+        apply plugin: 'com.android.library'
+
+        android {
+            compileSdkVersion 28
+            buildToolsVersion "28.0.3"
+
+            defaultConfig {
+                minSdkVersion    21
+                targetSdkVersion 28
+            }
+
+            packagingOptions {
+                exclude('META-INF/LE-FB14A.RSA')
+                exclude('META-INF/LE-FB14A.SF')
+            }
+
+            sourceSets {
+                main.java.srcDirs += 'src/main/public'
+                main.java.srcDirs += 'src/main/base'
+                main.java.srcDirs += 'src/main/api9'
+                main.java.srcDirs += 'src/main/api14'
+                main.java.srcDirs += 'src/main/api21'
+            }
+
+        }
+
+        dependencies {
+            api "com.android.support:support-annotations:28.0.0"
+            api "com.android.support:support-v4:28.0.0"
+            api "com.android.support:design:28.0.0"
+        }
+    }
+}

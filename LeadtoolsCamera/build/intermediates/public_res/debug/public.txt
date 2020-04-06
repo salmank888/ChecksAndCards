@@ -1,0 +1,9 @@
+style Widget_CameraView
+attr aspectRatio
+attr autoFocus
+attr captureMode
+attr facing
+attr flash
+attr forceLegacyCamera
+attr maxPreviewImages
+attr maxPreviewSizeMP
