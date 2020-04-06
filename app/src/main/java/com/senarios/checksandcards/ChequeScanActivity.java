@@ -3,6 +3,7 @@ package com.senarios.checksandcards;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,7 +31,7 @@ import java.io.ByteArrayOutputStream;
 import leadtools.camera.CameraView;
 import leadtools.camera.LeadSize;
 
-public class MainActivity
+public class ChequeScanActivity
         extends AppCompatActivity
 {
 
@@ -108,6 +109,9 @@ public class MainActivity
 
         if (mCameraView != null && mCameraView.isCameraOpened())
             mCameraView.stop();
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
     }
 
     private void onSelectImageSrc(int code)
@@ -154,7 +158,6 @@ public class MainActivity
         {
             if (!allGranted)
             {
-                // Cannot copy or read the OCR Runtime to the storage; show an error message and close the demo
                 Toast.makeText(mContext, "Permissions Not grated", Toast.LENGTH_SHORT)
                      .show();
             }
@@ -164,7 +167,7 @@ public class MainActivity
             }
         }
         else
-        {// Check if permission granted
+        {
             if (allGranted)
                 onSelectImageSrc(requestCode);
         }
@@ -173,7 +176,6 @@ public class MainActivity
 
     public void onSelectImage(View v)
     {
-        // Start\Stop live capture
         if (v.getId() == R.id.btn_image_live_capture)
         {
             onSelectImageSrc(IMAGE_LIVE_CAPTURE);
@@ -183,29 +185,14 @@ public class MainActivity
     private void startLiveCapture()
     {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        // Clear Image
-//        mImageViewer.setImage(null);
-
-        // Start live capture
         mCameraView.setVisibility(View.VISIBLE);
         mCameraView.start();
-
-
-//        setMicrExtractMode();
-//        mContinueCapture = true;
         mIsWorking = false;
     }
 
     private void stopLiveCapture()
     {
-//        mContinueCapture = false;
-
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        // Clear Image
-//        mImageViewer.setImage(null);
-
-        // Save showProgress value to be used in 'onStopCapture'
-
         mCameraView.stop();
     }
 
@@ -214,7 +201,6 @@ public class MainActivity
         @Override
         public void onCameraOpened(CameraView cameraView)
         {
-//        super.onCameraOpened(cameraView);
         }
 
         @Override
@@ -253,18 +239,20 @@ public class MainActivity
             Bitmap bmp = BitmapFactory.decodeByteArray(jdata, 0, jdata.length);
 
 
-
             mOverlayView.setVisibility(View.VISIBLE);
             mOverlayView.invalidate();
-            if(bmp != null && !mIsWorking){
+            if (bmp != null && !mIsWorking)
+            {
                 RecognizeMICRLiveCaptureTask result = new RecognizeMICRLiveCaptureTask();
-                result.execute(MainActivity.this, bmp);
+                result.execute(ChequeScanActivity.this, bmp);
             }
-//            Toast.makeText(mContext, "image Count" + count++, Toast.LENGTH_SHORT)
-//                 .show();
         }
     };
-    private class RecognizeMICRLiveCaptureTask extends AsyncTask<Object,Void, ResultClass> {
+
+
+    private class RecognizeMICRLiveCaptureTask
+            extends AsyncTask<Object, Void, ResultClass>
+    {
 
         final String TAG = "DBG_" + TessAsyncEngine.class.getName();
 
@@ -273,20 +261,26 @@ public class MainActivity
         private AppCompatActivity context;
 
         @Override
-        protected void onPreExecute () {
+        protected void onPreExecute()
+        {
             mIsWorking = true;
         }
+
         @Override
-        protected ResultClass doInBackground(Object... params) {
+        protected ResultClass doInBackground(Object... params)
+        {
 
-            try {
+            try
+            {
 
-                if(params.length < 2) {
+                if (params.length < 2)
+                {
                     Log.e(TAG, "Error passing parameter to execute - missing params");
                     return null;
                 }
 
-                if(!(params[0] instanceof Activity) || !(params[1] instanceof Bitmap)) {
+                if (!(params[0] instanceof Activity) || !(params[1] instanceof Bitmap))
+                {
                     Log.e(TAG, "Error passing parameter to execute(context, bitmap)");
                     return null;
                 }
@@ -295,54 +289,67 @@ public class MainActivity
 
                 bmp = (Bitmap)params[1];
 
-                if(context == null || bmp == null) {
+                if (context == null || bmp == null)
+                {
                     Log.e(TAG, "Error passed null parameter to execute(context, bitmap)");
                     return null;
                 }
 
                 int rotate = 0;
 
-                if(params.length == 3 && params[2]!= null && params[2] instanceof Integer){
-                    rotate = (Integer) params[2];
+                if (params.length == 3 && params[2] != null && params[2] instanceof Integer)
+                {
+                    rotate = (Integer)params[2];
                 }
 
-                if(rotate >= -180 && rotate <= 180 && rotate != 0)
+                if (rotate >= -180 && rotate <= 180 && rotate != 0)
                 {
                     bmp = Tools.preRotateBitmap(bmp, rotate);
                     Log.d(TAG, "Rotated OCR bitmap " + rotate + " degrees");
                 }
 
-                TessEngine tessEngine =  TessEngine.Generate(context);
+                TessEngine tessEngine = TessEngine.Generate(context);
 
                 bmp = bmp.copy(Bitmap.Config.ARGB_8888, true);
 
                 ResultClass result = tessEngine.detectText(bmp);
                 result.rzlt = result.rzlt.replace(" ", "");
-                result.rzlt = result.rzlt.replace("\n","");
+                result.rzlt = result.rzlt.replace("\n", "");
                 //Log.d(TAG, result);
                 return result;
 
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Log.d(TAG, "Error: " + ex + "\n" + ex.getMessage());
             }
 
             return null;
         }
+
         @Override
-        protected void onPostExecute(ResultClass result) {
-            if(result.rzlt.length()>32){
+        protected void onPostExecute(ResultClass result)
+        {
+            if (result.rzlt.length() > 32)
+            {
 
                 String fresult = result.rzlt;
-                if (fresult.contains("A") && fresult.contains("C") && fresult.startsWith("C")) {
+                if (fresult.contains("A") && fresult.contains("C") && fresult.startsWith("C"))
+                {
                     String[] cSubstrings = fresult.split("C");
                     String[] aSubstrings = fresult.split("A");
-                    if(cSubstrings.length==4 && aSubstrings.length==2) {
+                    if (cSubstrings.length == 4 && aSubstrings.length == 2)
+                    {
                         String[] subString1 = cSubstrings[2].split("A");
-                        if(subString1.length==2) {
-                            if(isNumeric(subString1[0]) && isNumeric(subString1[1])&&isNumeric(cSubstrings[1])) {
-                                ImageDialog.New().addTitle(subString1[0], subString1[1], cSubstrings[1])
-                                        .addBitmap(bmp)
-                                        .show(context.getSupportFragmentManager(), TAG);
+                        if (subString1.length == 2)
+                        {
+                            if (isNumeric(subString1[0]) && isNumeric(subString1[1]) && isNumeric(
+                                    cSubstrings[1]))
+                            {
+                                ImageDialog.New()
+                                           .addTitle(subString1[0], subString1[1], cSubstrings[1])
+                                           .addBitmap(bmp)
+                                           .show(context.getSupportFragmentManager(), TAG);
                                 stopLiveCapture();
                             }
                         }
@@ -353,18 +360,23 @@ public class MainActivity
         }
 
         @Override
-        protected void onCancelled() {
+        protected void onCancelled()
+        {
             super.onCancelled();
             mIsWorking = false;
+            Intent returnIntent = new Intent();
+            setResult(Activity.RESULT_CANCELED, returnIntent);
+            finish();
         }
     }
+
     public static boolean isNumeric(String str)
     {
         try
         {
             Long d = Long.parseLong(str);
         }
-        catch(NumberFormatException nfe)
+        catch (NumberFormatException nfe)
         {
             return false;
         }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">checksCards</string>
+    <string name="app_name">Checks And Cards</string>
     <string name="image_live_capture">live capture</string>
     <string name="image_gallery">gallery</string>
     <string name="image_file">browse image</string>
@@ -42,4 +42,5 @@
     <string-array name="settings_micr_extraction_values">
         <item>Strict Mode</item>
         <item>Relaxed Mode</item>
-    </string-array></resources>
+    </string-array>
+</resources>

@@ -1008,14 +1008,12 @@ id auto
 id back
 id blocking
 id bottom
-id bubbleLevel
 id buttonPanel
 id camera
 id cancel_action
 id center
 id checkbox
 id chronometer
-id confirmationArea
 id container
 id content
 id contentPanel
@@ -1048,7 +1046,6 @@ id home
 id icon
 id icon_group
 id image
-id imageViewer
 id info
 id italic
 id item_touch_helper_previous_elevation
@@ -1059,7 +1056,6 @@ id line1
 id line3
 id listMode
 id list_item
-id ll_parent
 id masked
 id media_actions
 id message
@@ -1080,7 +1076,6 @@ id parallax
 id parentPanel
 id parent_matrix
 id pin
-id progressBar
 id progress_circular
 id progress_horizontal
 id radio
@@ -1211,7 +1206,6 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_camera
 layout bubble_level_view
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
