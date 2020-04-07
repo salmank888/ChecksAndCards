@@ -25,6 +25,7 @@ import com.senarios.checksandcards.Imaging.Tools;
 import com.senarios.checksandcards.TessTool.ResultClass;
 import com.senarios.checksandcards.TessTool.TessAsyncEngine;
 import com.senarios.checksandcards.TessTool.TessEngine;
+import com.senarios.chequescanlibrary.GetMicrDetails;
 
 import java.io.ByteArrayOutputStream;
 

@@ -1,2 +1,3 @@
 rootProject.name='Checks And Cards'
 include ':app', ':LeadtoolsCamera'
+include ':chequescanlibrary'
